@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Music Writing Randomizer</title>
+        <style>
+            body{
+                background-image: url(https://filedn.com/l4Cq3kInYQXVzlyU7N4r2A8/music_note_background.jpeg);
+                color: white;
+            }
+            #randomize {
+                width: 300px;
+                margin: 0 auto;
+                text-align: center;
+                background: rgba(0,0,50.2,0.5);
+            }
+        </style>
+        <script>
+            function randomize() {
+                // Tempo
+                var tempos = ["50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100", "105", "110", "115", "120", "125", "130", "135", "140", "145", "150", "155", "160", "165", "170", "175", "180", "185", "190", "195", "200", "205", "210", "215", "220", "225", "230", "235", "240", "245", "250", "255", "260", "265", "270", "275", "280", "285", "290", "295", "300",  ];
+                var tempos = tempos[Math.floor(Math.random() * tempos.length)];
+                document.getElementById("tempo").textContent = "Tempo: " + tempos + " bpm";
+
+                // Time Signature
+                var signatures = ["2/4", "3/4", "4/4", "2/2", "6/8", "9/8", "12/8", "5/8", "7/8", ];
+                var signatures = signatures[Math.floor(Math.random() * signatures.length)];
+                document.getElementById("timesig").textContent = "Time Signature: " + signatures;
+
+                // Key
+                var keys = ["A", "A#", "Bb", "B", "C", "C#", "Db", "D", "D#", "Eb", "E", "F", "F#", "Gb", "G", "G#", "Ab", ];
+                var keys = keys[Math.floor(Math.random() * keys.length)];
+                document.getElementById("key").textContent = "Key: " + keys;
+
+                // Mode
+                var modes = ["Major", "Major", "Major", "Natural Minor", "Melodic Minor", "Harmonic Minor", ];
+                var modes = modes[Math.floor(Math.random() * modes.length)];
+                document.getElementById("mode").textContent = "Mode: " + modes;
+
+                // Arrangement
+                var arrangements = ["Full Orchestra", "Orchestra + Drums", "Orchestra + Piano", "Solo Piano", "String Ensemble", "Brass Ensemble", "Woodwind Ensemble", "Electric Guitar, Bass, Drums", "Acoustic Guitar, Bass, Drums", "Strings + Piano", "Piano, Brass, Drums", "Electric Guitar, Bass, Drums, Brass", "Piano, Electric Guitar, Bass, Drums, Brass", "Orchestra + Solo Violin", "Orchestra + Solo Flute", "Orchestra + Solo Trumpet", "Orchestra + Solo Oboe", "Orchestra + Solo Clarinet", "Orchestra + Solo Trombone", "Orchestra + Solo Saxaphone", "Orchestra + Solo Horn", "Orchestra + Solo Bassoon", ];
+                var arrangements = arrangements[Math.floor(Math.random() * arrangements.length)];
+                document.getElementById("arrange").textContent = "Arrangement: " + arrangements;
+
+                // Choose mood or genre depending on arrangment choice
+                if( arrangements == "Electric Guitar, Bass, Drums" || arrangements == "Acoustic Guitar, Bass, Drums" || arrangements == "Piano, Brass, Drums" || arrangements == "Electric Guitar, Bass, Drums, Brass" || arrangements == "Piano, Electric Guitar, Bass, Drums, Brass"){
+                    // If a band arrangement is chosen, select from song genres instead of moods
+                    var moods = ["Rock", "Metal", "Jazz", "Blues", "Death Metal", "Doom Metal", "Hard Rock", "Pop", "Disco", "Techno", "EDM", "Ska", "Pop Punk", "Punk", "Hardcore", "R&B", "Hip-Hop", "Lo-Fi Hip-Hop", ];
+                    var moods = moods[Math.floor(Math.random() * moods.length)];
+                    document.getElementById("mood").textContent = "Genre: " + moods;
+                }else{
+                    // If an orchestral arrangement is chosen, select from moods instead of genres
+                    var moods = ["Happy", "Exuberant", "Energetic", "Frantic", "Anxious/Sad", "Depression", "Calm", "Contentment", ];
+                    var moods = moods[Math.floor(Math.random() * moods.length)];
+                    document.getElementById("mood").textContent = "Mood: " + moods;
+                };
+
+                // Delete Button
+                document.getElementById("generate").style.visibility = "hidden";
+            };
+        </script>
+    </head>
+    <body>
+        <div id="randomize">
+            <input id="generate" type="button" value="Generate Random Song Specifications" onclick="randomize();" />
+            <br /><br />
+            <div id="tempo"></div>
+            <br />
+            <div id="timesig"></div>
+            <br />
+            <div id="key"></div>
+            <br />
+            <div id="mode"></div>
+            <br />
+            <div id="arrange"></div>
+            <br />
+            <div id="mood"></div>
+        </div>
+    </body>
+</html>
